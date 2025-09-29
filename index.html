@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>BRAVO !!!!! 🚀</title>
+<style>
+  :root{
+    --bg:#0b0f14; --text:#e8f1ff; --muted:#8aa0b5; --accent:#41ffb0;
+    --card: rgba(255,255,255,.06); --border:#1f2b38;
+  }
+  *{box-sizing:border-box} html,body{height:100%}
+  body{
+    margin:0; font-family: system-ui,-apple-system,Segoe UI,Roboto,Inter,sans-serif;
+    background: radial-gradient(1200px 600px at 50% -20%, #16202b, #0b0f14); color:var(--text);
+    display:flex; align-items:center; justify-content:center; padding:24px;
+    overflow:hidden;
+  }
+  .wrap{
+    text-align:center; max-width:900px; width:min(92vw,900px);
+    background:var(--card); border:1px solid var(--border); border-radius:16px; padding:28px 20px 20px;
+    position:relative;
+  }
+  h1{font-size:clamp(28px, 4vw, 42px); margin:0 0 8px}
+  .lead{font-size:clamp(16px, 2.2vw, 20px); color:var(--muted); margin:0 0 16px}
+  .cta{display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:18px}
+  .btn{appearance:none; border:none; cursor:pointer; padding:12px 16px; border-radius:10px; font-weight:700}
+  .btn.primary{background:var(--accent); color:#0b0f14}
+  .btn.ghost{background:transparent; color:var(--text); border:1px solid var(--border)}
+  .badge{display:inline-block; background:#12283a; color:#b7dcff; border:1px solid #2b4a67; padding:6px 10px; border-radius:999px; margin:4px 0}
+  .halo{
+    width:140px; height:140px; border-radius:50%; margin:16px auto 10px;
+    background: radial-gradient(circle at 50% 50%, #ff6969 0%, #ff3b3b 38%, #8a0000 60%, #2c0000 100%);
+    box-shadow:0 0 60px 10px rgba(255,59,59,.25);
+    animation:pulse 1.6s infinite ease-in-out;
+  }
+  @keyframes pulse{0%{transform:scale(1)}50%{transform:scale(1.06)}100%{transform:scale(1)}}
+
+  /* Confettis */
+  .confetti{position:fixed; inset:0; pointer-events:none; overflow:hidden}
+  .confetti i{
+    position:absolute; top:-10vh; width:8px; height:14px; opacity:.9;
+    transform:translateY(-100%); border-radius:2px;
+    animation: fall linear forwards;
+  }
+  @keyframes fall{
+    to { transform: translateY(110vh) rotate(720deg); }
+  }
+</style>
+</head>
+<body>
+  <div class="confetti" aria-hidden="true"></div>
+  <div class="wrap" role="main" aria-labelledby="title">
+    <div class="halo" aria-hidden="true"></div>
+    <h1 id="title">🎉 BRAVO !</h1>
+    <p class="lead">
+      Vous avez percé l’énigme du QR code et remporté l’energizer SF. <br/>
+      Le PI peut commencer : <span class="badge">équipe au top</span> <span class="badge">esprit d’analyse</span> <span class="badge">coopération</span>
+    </p>
+    <div class="cta">
+      <a class="btn primary" href="#" onclick="window.history.length>1?history.back():null">↩️ Revenir</a>
+      <a class="btn ghost" href="mailto:prenom.nom@entreprise.fr?subject=PI%20CQFD%20—%20Bravo" target="_blank" rel="noopener">📧 Remercier l’orga</a>
+    </div>
+  </div>
+
+<script>
+(function(){
+  // Confettis  — couleur locale, aucune dépendance externe
+  const colors = ["#ff3b3b","#ffd166","#06d6a0","#118ab2","#ef476f","#41ffb0"];
+  const root = document.querySelector(".confetti");
+  const W = () => Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+  const N = Math.min(160, Math.floor(W()/8)); // densité
+
+  for(let i=0;i<N;i++){
+    const el = document.createElement("i");
+    const size = 6 + Math.random()*8;
+    el.style.width = size + "px";
+    el.style.height = (size*1.4) + "px";
+    el.style.left = (Math.random()*100)+"vw";
+    el.style.background = colors[Math.floor(Math.random()*colors.length)];
+    el.style.animationDuration = (5 + Math.random()*4) + "s";
+    el.style.animationDelay = (Math.random()*2) + "s";
+    root.appendChild(el);
+    // nettoyage après animation
+    el.addEventListener("animationend", ()=> el.remove());
+  }
+})();
+</script>
+</body>
+</html>
